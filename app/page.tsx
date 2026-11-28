@@ -119,7 +119,7 @@ return (
 </div>
 {showLogin && (<div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-20">
 <div className="bg-white rounded-2xl p-6 w-full max-w-sm"><h3 className="font-bold">Login / Signup</h3><input placeholder="Full Name" className="w-full p-3 border rounded-lg mt-3"/><input placeholder="Email" className="w-full p-3 border rounded-lg mt-2"/><button onClick={()=>setShowLogin(false)} className="w-full mt-3 bg-sky-500 text-white py-2 rounded-full font-bold">Login</button><button onClick={()=>setShowLogin(false)} className="w-full mt-2">Close</button></div>
-</div>)}
+</div></div>)}
 </main>
 );
 }
