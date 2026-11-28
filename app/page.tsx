@@ -110,8 +110,13 @@ return (
 <div className="mt-4"><button onClick={()=>setTab("home")} className="underline">Back to Home</button></div>
 </div>
 )}
-</div>
 
+{/* ADMIN BUTTON */}
+<div className="text-center p-6 bg-slate-100 mt-6">
+  <a href="/admin" className="bg-blue-900 text-white px-6 py-3 rounded-lg font-bold no-underline inline-block">
+    🔐 Admin Dashboard
+  </a>
+</div>
 {showLogin && (<div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-20">
 <div className="bg-white rounded-2xl p-6 w-full max-w-sm"><h3 className="font-bold">Login / Signup</h3><input placeholder="Full Name" className="w-full p-3 border rounded-lg mt-3"/><input placeholder="Email" className="w-full p-3 border rounded-lg mt-2"/><button onClick={()=>setShowLogin(false)} className="w-full mt-3 bg-sky-500 text-white py-2 rounded-full font-bold">Login</button><button onClick={()=>setShowLogin(false)} className="w-full mt-2">Close</button></div>
 </div>)}
