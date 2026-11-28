@@ -1,106 +1,102 @@
 "use client";
+import { useState } from "react";
 
 export default function AdminPage() {
+  const [active, setActive] = useState("Dashboard");
+
   return (
     <div className="min-h-screen flex bg-slate-50">
-      {/* SIDEBAR - BLUE */}
-      <div className="w-64 bg-blue-900 text-white p-4 min-h-screen">
+      {/* SIDEBAR */}
+      <div className="w-64 bg-blue-900 text-white p-4 min-h-screen sticky top-0">
         <div className="mb-8">
-          <h2 className="font-bold text-lg flex items-center gap-2">🏥 Kochi Health</h2>
+          <h2 className="font-bold text-lg">🏥 Kochi Health</h2>
           <p className="font-bold text-lg -mt-1">Care System</p>
           <p className="text-xs text-blue-300 mt-1">Healthcare Admin</p>
         </div>
         
         <div className="space-y-1">
-          <div className="bg-blue-800 p-3 rounded-lg font-bold flex gap-2">📊 Dashboard</div>
-          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">📅 Appointments</div>
-          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">👨‍⚕️ Doctors</div>
-          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 pl-8 text-blue-100">Patients</div>
-          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">💰 Revenue</div>
-          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">📄 Reports</div>
+          {[
+            { name: "Dashboard", icon: "📊" },
+            { name: "Appointments", icon: "📅" },
+            { name: "Doctors", icon: "👨‍⚕️" },
+            { name: "Patients", icon: "👥" },
+            { name: "Revenue", icon: "💰" },
+            { name: "Reports", icon: "📄" },
+          ].map((item) => (
+            <button
+              key={item.name}
+              onClick={() => setActive(item.name)}
+              className={`w-full text-left p-3 rounded-lg flex gap-2 font-bold transition ${
+                active === item.name ? "bg-blue-700 text-white shadow" : "text-blue-200 hover:bg-blue-800"
+              }`}
+            >
+              {item.icon} {item.name}
+            </button>
+          ))}
+        </div>
+
+        <div className="mt-10">
+          <a href="/" className="bg-white text-blue-900 px-4 py-2 rounded-full font-bold text-sm block text-center">← Back to Home</a>
         </div>
       </div>
 
-      {/* MAIN CONTENT */}
-      <div className="flex-1 p-8 bg-slate-50">
-        <h1 className="text-3xl font-bold text-black mb-6">Dashboard</h1>
+      {/* MAIN */}
+      <div className="flex-1 p-8">
+        <h1 className="text-3xl font-bold text-black mb-6">{active}</h1>
 
-        {/* 4 CARDS - NOW DARK TEXT */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
-          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
-            <div className="flex justify-center mb-2">📊</div>
-            <p className="text-center text-sm font-bold text-black">Total Appointments</p>
-            <p className="text-center text-3xl font-bold text-black mt-2">1248</p>
-            <p className="text-center text-xs font-bold text-green-700 mt-2">↑ 12% from last month</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
-            <div className="flex justify-center mb-2">💰</div>
-            <p className="text-center text-sm font-bold text-black">Revenue</p>
-            <p className="text-center text-3xl font-bold text-black mt-2">₹842500</p>
-            <p className="text-center text-xs font-bold text-green-700 mt-2">↑ 8.4% from last month</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
-            <div className="flex justify-center mb-2">👨‍⚕️</div>
-            <p className="text-center text-sm font-bold text-black">Active Doctors</p>
-            <p className="text-center text-3xl font-bold text-black mt-2">42</p>
-            <p className="text-center text-xs font-bold text-black mt-2">↑ 3 new this month</p>
-          </div>
-
-          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
-            <div className="flex justify-center mb-2">👥</div>
-            <p className="text-center text-sm font-bold text-black">Patients</p>
-            <p className="text-center text-3xl font-bold text-black mt-2">3,166</p>
-            <p className="text-center text-xs font-bold text-green-700 mt-2">↑ 15% from last month</p>
-          </div>
-        </div>
-
-        {/* RECENT BOOKINGS - DARK TEXT */}
-        <div className="bg-white p-6 rounded-2xl shadow border border-slate-200 mt-8">
-          <h2 className="font-bold text-lg text-black mb-4">Recent Bookings (Live from your site)</h2>
-          
-          <div className="space-y-3">
-            <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border">
-              <div>
-                <p className="font-bold text-black">KHC2847 - Dr. Arjun Nair</p>
-                <p className="text-sm text-black">Amrita Hospital | Cardiology</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-bold text-black">Total: ₹500</p>
-                <span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">Paid</span>
-              </div>
+        {active === "Dashboard" && (
+          <>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
+              <div className="bg-white p-6 rounded-2xl shadow border text-center"><p className="font-bold text-black">Total Appointments</p><p className="text-3xl font-bold text-black mt-2">1248</p><p className="text-xs font-bold text-green-700 mt-2">↑ 12% from last month</p></div>
+              <div className="bg-white p-6 rounded-2xl shadow border text-center"><p className="font-bold text-black">Revenue</p><p className="text-3xl font-bold text-black mt-2">₹842500</p><p className="text-xs font-bold text-green-700 mt-2">↑ 8.4% from last month</p></div>
+              <div className="bg-white p-6 rounded-2xl shadow border text-center"><p className="font-bold text-black">Active Doctors</p><p className="text-3xl font-bold text-black mt-2">42</p><p className="text-xs font-bold text-black mt-2">↑ 3 new this month</p></div>
+              <div className="bg-white p-6 rounded-2xl shadow border text-center"><p className="font-bold text-black">Patients</p><p className="text-3xl font-bold text-black mt-2">3,166</p><p className="text-xs font-bold text-green-700 mt-2">↑ 15% from last month</p></div>
             </div>
 
-            <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border">
-              <div>
-                <p className="font-bold text-black">KHC2848 - Dr. Priya Menon</p>
-                <p className="text-sm text-black">Lakeshore | Dermatology</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-bold text-black">Total: ₹400</p>
-                <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">Pending</span>
+            <div className="bg-white p-6 rounded-2xl shadow border mt-8">
+              <h2 className="font-bold text-lg text-black mb-4">Recent Bookings (Live from your site)</h2>
+              <div className="space-y-3">
+                <div className="flex justify-between p-4 bg-slate-50 rounded-xl border"><div><p className="font-bold text-black">KHC2847 - Dr. Arjun Nair</p><p className="text-sm text-black">Amrita Hospital</p></div><span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs h-fit font-bold">Paid</span></div>
+                <div className="flex justify-between p-4 bg-slate-50 rounded-xl border"><div><p className="font-bold text-black">KHC2848 - Dr. Priya Menon</p><p className="text-sm text-black">Lakeshore Hospital</p></div><span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs h-fit font-bold">Pending</span></div>
+                <div className="flex justify-between p-4 bg-slate-50 rounded-xl border"><div><p className="font-bold text-black">KHC2849 - Dr. Suresh Kumar</p><p className="text-sm text-black">Medical Trust</p></div><span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs h-fit font-bold">Paid</span></div>
               </div>
             </div>
+          </>
+        )}
 
-            <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border">
-              <div>
-                <p className="font-bold text-black">KHC2849 - Dr. Suresh Kumar</p>
-                <p className="text-sm text-black">Medical Trust | Orthopedics</p>
-              </div>
-              <div className="text-right">
-                <p className="text-sm font-bold text-black">Total: ₹600</p>
-                <span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">Paid</span>
-              </div>
+        {active === "Appointments" && (
+          <div className="bg-white p-6 rounded-2xl shadow border">
+            <p className="text-black font-bold">All Appointments - 1248 total</p>
+            <div className="mt-4 space-y-2">
+              <div className="p-3 border rounded-lg text-black font-medium">KHC2847 - Today 10:00 AM - Dr. Arjun - Paid ✅</div>
+              <div className="p-3 border rounded-lg text-black font-medium">KHC2848 - Today 11:30 AM - Dr. Priya - Pending ⏳</div>
+              <div className="p-3 border rounded-lg text-black font-medium">KHC2849 - Tomorrow 9:00 AM - Dr. Suresh - Paid ✅</div>
             </div>
           </div>
+        )}
 
-          <p className="text-xs text-black font-medium mt-6">Note: This shows demo bookings from localStorage. For real project, connect to database.</p>
-        </div>
+        {active === "Doctors" && (
+          <div className="bg-white p-6 rounded-2xl shadow border">
+            <p className="text-black font-bold mb-4">42 Active Doctors</p>
+            <div className="grid md:grid-cols-3 gap-3">
+              <div className="border p-4 rounded-xl"><p className="font-bold text-black">Dr. Arjun Nair</p><p className="text-sm text-black">Cardiology - Amrita</p></div>
+              <div className="border p-4 rounded-xl"><p className="font-bold text-black">Dr. Priya Menon</p><p className="text-sm text-black">Dermatology - Lakeshore</p></div>
+              <div className="border p-4 rounded-xl"><p className="font-bold text-black">Dr. Suresh Kumar</p><p className="text-sm text-black">Orthopedics - Medical Trust</p></div>
+            </div>
+          </div>
+        )}
 
-        <div className="text-center mt-6">
-          <a href="/" className="bg-blue-900 text-white px-6 py-2 rounded-full font-bold inline-block">← Back to Home</a>
-        </div>
+        {active === "Patients" && (
+          <div className="bg-white p-6 rounded-2xl shadow border"><p className="font-bold text-black">Patients List - 3,166</p><p className="text-black mt-2">Patient data will come from database. Demo: Rahul, Priya, Suresh...</p></div>
+        )}
+
+        {active === "Revenue" && (
+          <div className="bg-white p-6 rounded-2xl shadow border"><p className="font-bold text-black text-2xl">₹8,42,500 Total Revenue</p><p className="text-black mt-2 font-bold text-green-700">↑ 8.4% growth - Chart will show here</p></div>
+        )}
+
+        {active === "Reports" && (
+          <div className="bg-white p-6 rounded-2xl shadow border"><p className="font-bold text-black">Reports</p><button className="mt-3 bg-blue-900 text-white px-4 py-2 rounded-full font-bold">📥 Download Monthly Report</button></div>
+        )}
       </div>
     </div>
   );
