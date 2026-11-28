@@ -1,50 +1,107 @@
 "use client";
+
 export default function AdminPage() {
   return (
-    <main className="min-h-screen bg-black text-white p-6">
-      <div className="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 flex justify-between items-center">
-        <h1 className="text-3xl font-bold">🔐 Admin Dashboard</h1>
-        <a href="/" className="bg-white text-black px-5 py-2 rounded-full font-bold">← Back to Home</a>
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
-        <div className="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
-          <p className="text-zinc-400 text-sm">Total Appointments</p>
-          <p className="text-3xl font-bold mt-2">1,248</p>
-          <p className="text-green-400 text-xs mt-1">↑ 12% this month</p>
+    <div className="min-h-screen flex bg-slate-50">
+      {/* SIDEBAR - BLUE */}
+      <div className="w-64 bg-blue-900 text-white p-4 min-h-screen">
+        <div className="mb-8">
+          <h2 className="font-bold text-lg flex items-center gap-2">🏥 Kochi Health</h2>
+          <p className="font-bold text-lg -mt-1">Care System</p>
+          <p className="text-xs text-blue-300 mt-1">Healthcare Admin</p>
         </div>
-        <div className="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
-          <p className="text-zinc-400 text-sm">Total Revenue</p>
-          <p className="text-3xl font-bold mt-2">₹8,42,500</p>
-          <p className="text-green-400 text-xs mt-1">↑ 8% this month</p>
-        </div>
-        <div className="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
-          <p className="text-zinc-400 text-sm">Active Doctors</p>
-          <p className="text-3xl font-bold mt-2">42</p>
-        </div>
-        <div className="bg-zinc-900 p-5 rounded-2xl border border-zinc-800">
-          <p className="text-zinc-400 text-sm">Total Patients</p>
-          <p className="text-3xl font-bold mt-2">892</p>
+        
+        <div className="space-y-1">
+          <div className="bg-blue-800 p-3 rounded-lg font-bold flex gap-2">📊 Dashboard</div>
+          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">📅 Appointments</div>
+          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">👨‍⚕️ Doctors</div>
+          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 pl-8 text-blue-100">Patients</div>
+          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">💰 Revenue</div>
+          <div className="p-3 rounded-lg hover:bg-blue-800 flex gap-2 text-blue-100">📄 Reports</div>
         </div>
       </div>
 
-      <div className="bg-zinc-900 p-6 rounded-2xl border border-zinc-800 mt-6">
-        <h2 className="text-xl font-bold mb-4">Recent Bookings (Live from your site)</h2>
-        <div className="space-y-3">
-          <div className="bg-black p-4 rounded-xl border border-zinc-800 flex justify-between">
-            <div><b>KHC2847</b> - Dr. Arjun Nair<br/><span className="text-xs text-zinc-400">Amrita Hospital | Cardiology</span></div>
-            <div className="text-right"><span className="bg-green-900 text-green-300 px-3 py-1 rounded-full text-xs">Paid</span><br/><span className="text-sm font-bold">₹500</span></div>
+      {/* MAIN CONTENT */}
+      <div className="flex-1 p-8 bg-slate-50">
+        <h1 className="text-3xl font-bold text-black mb-6">Dashboard</h1>
+
+        {/* 4 CARDS - NOW DARK TEXT */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
+            <div className="flex justify-center mb-2">📊</div>
+            <p className="text-center text-sm font-bold text-black">Total Appointments</p>
+            <p className="text-center text-3xl font-bold text-black mt-2">1248</p>
+            <p className="text-center text-xs font-bold text-green-700 mt-2">↑ 12% from last month</p>
           </div>
-          <div className="bg-black p-4 rounded-xl border border-zinc-800 flex justify-between">
-            <div><b>KHC2848</b> - Dr. Priya Menon<br/><span className="text-xs text-zinc-400">Lakeshore | Dermatology</span></div>
-            <div className="text-right"><span className="bg-yellow-900 text-yellow-300 px-3 py-1 rounded-full text-xs">Pending</span><br/><span className="text-sm font-bold">₹400</span></div>
+
+          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
+            <div className="flex justify-center mb-2">💰</div>
+            <p className="text-center text-sm font-bold text-black">Revenue</p>
+            <p className="text-center text-3xl font-bold text-black mt-2">₹842500</p>
+            <p className="text-center text-xs font-bold text-green-700 mt-2">↑ 8.4% from last month</p>
           </div>
-          <div className="bg-black p-4 rounded-xl border border-zinc-800 flex justify-between">
-            <div><b>KHC2849</b> - Dr. Suresh Kumar<br/><span className="text-xs text-zinc-400">Medical Trust | Orthopedics</span></div>
-            <div className="text-right"><span className="bg-green-900 text-green-300 px-3 py-1 rounded-full text-xs">Paid</span><br/><span className="text-sm font-bold">₹600</span></div>
+
+          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
+            <div className="flex justify-center mb-2">👨‍⚕️</div>
+            <p className="text-center text-sm font-bold text-black">Active Doctors</p>
+            <p className="text-center text-3xl font-bold text-black mt-2">42</p>
+            <p className="text-center text-xs font-bold text-black mt-2">↑ 3 new this month</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow border border-slate-200">
+            <div className="flex justify-center mb-2">👥</div>
+            <p className="text-center text-sm font-bold text-black">Patients</p>
+            <p className="text-center text-3xl font-bold text-black mt-2">3,166</p>
+            <p className="text-center text-xs font-bold text-green-700 mt-2">↑ 15% from last month</p>
           </div>
         </div>
+
+        {/* RECENT BOOKINGS - DARK TEXT */}
+        <div className="bg-white p-6 rounded-2xl shadow border border-slate-200 mt-8">
+          <h2 className="font-bold text-lg text-black mb-4">Recent Bookings (Live from your site)</h2>
+          
+          <div className="space-y-3">
+            <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border">
+              <div>
+                <p className="font-bold text-black">KHC2847 - Dr. Arjun Nair</p>
+                <p className="text-sm text-black">Amrita Hospital | Cardiology</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-bold text-black">Total: ₹500</p>
+                <span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">Paid</span>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border">
+              <div>
+                <p className="font-bold text-black">KHC2848 - Dr. Priya Menon</p>
+                <p className="text-sm text-black">Lakeshore | Dermatology</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-bold text-black">Total: ₹400</p>
+                <span className="bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold">Pending</span>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center p-4 bg-slate-50 rounded-xl border">
+              <div>
+                <p className="font-bold text-black">KHC2849 - Dr. Suresh Kumar</p>
+                <p className="text-sm text-black">Medical Trust | Orthopedics</p>
+              </div>
+              <div className="text-right">
+                <p className="text-sm font-bold text-black">Total: ₹600</p>
+                <span className="bg-green-600 text-white px-3 py-1 rounded-full text-xs font-bold">Paid</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-xs text-black font-medium mt-6">Note: This shows demo bookings from localStorage. For real project, connect to database.</p>
+        </div>
+
+        <div className="text-center mt-6">
+          <a href="/" className="bg-blue-900 text-white px-6 py-2 rounded-full font-bold inline-block">← Back to Home</a>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
